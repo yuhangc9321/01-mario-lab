@@ -12,9 +12,9 @@ def pyrmd_custom_height(height)
     build = ""
     
     for line_num in 1..height do
-    line = ""
-    line << " "*(height-line_num) + "#"*line_num + "  " + "#"*line_num
-    build << line + "\n"
+        line = ""
+        line << " "*(height-line_num) + "#"*line_num + "  " + "#"*line_num
+        build << line + "\n"
     end
     
     return build
@@ -28,9 +28,9 @@ def pyrmd_chainer(height,chain_length)
     build = ""
     
     for line_num in 1..height do
-    line = ""
-    line << " "*(height-line_num) + "#"*line_num + "  " + "#"*line_num
-    build << line + "\n"
+        line = ""
+        line << " "*(height-line_num) + "#"*line_num + "  " + "#"*line_num
+        build << line + "\n"
     end
 
     build*chain_length
@@ -45,26 +45,19 @@ end
 def pyrmd_alt_invert(height,chain_length)
     build = ""
     complete = ""
-    inverted_levels = height..1
     
+    for line_num in 1..height do
+        line = ""
+        line << " "*(height-line_num) + "#"*line_num + "  " + "#"*line_num + " "*(height-line_num)
+        build << line + "\n"
+    end
+
     for chain_i in 1..chain_length do
-        build = ""
-        #make an inverted pyramid if chain index is even
         if chain_i % 2 == 0
-            for line_num in (inverted_levels.first).downto(inverted_levels.last) do
-            line = ""
-            line << " "*(height-line_num) + "#"*line_num + "  " + "#"*line_num
-            build << line + "\n"
-            end
-        #otherwise make a normal pyramid
+            complete << build.reverse + "\n"
         else
-            for line_num in 1..height do
-            line = ""
-            line << " "*(height-line_num) + "#"*line_num + "  " + "#"*line_num
-            build << line + "\n"
-            end
+            complete << build.chomp
         end
-        complete << build
     end
     
     return complete
